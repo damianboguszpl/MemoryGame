@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D731A892AF00A5400C0A916 /* ThemeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */; };
 		3FA255882ADE6CD000C6A5CA /* MemoryGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */; };
 		3FA2558A2ADE6CD000C6A5CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA255892ADE6CD000C6A5CA /* ContentView.swift */; };
 		3FA2558C2ADE6CD100C6A5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FA2558B2ADE6CD100C6A5CA /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButtonView.swift; sourceTree = "<group>"; };
 		3FA255842ADE6CD000C6A5CA /* MemoryGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameApp.swift; sourceTree = "<group>"; };
 		3FA255892ADE6CD000C6A5CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */,
 				3FA255892ADE6CD000C6A5CA /* ContentView.swift */,
 				3FA255B12ADE6CED00C6A5CA /* CardView.swift */,
+				2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */,
 				3FA2558B2ADE6CD100C6A5CA /* Assets.xcassets */,
 				3FA2558D2ADE6CD100C6A5CA /* Preview Content */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				3FA2558A2ADE6CD000C6A5CA /* ContentView.swift in Sources */,
 				3FA255B22ADE6CED00C6A5CA /* CardView.swift in Sources */,
+				2D731A892AF00A5400C0A916 /* ThemeButtonView.swift in Sources */,
 				3FA255882ADE6CD000C6A5CA /* MemoryGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +437,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +466,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

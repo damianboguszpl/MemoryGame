@@ -5,37 +5,29 @@
 //  Created by student on 17/10/2023.
 //
 import SwiftUI
+
 struct CardView: View {
-    var emoji:String
-    @State var visibilityState:Bool = true
+    var cardText: String
+    @State var visibilityState:Bool = false
+    let colors = [Color.blue, Color.red, Color.green]
+    @Binding var chosenTheme: Int
     
     var body: some View {
-        ZStack {
-            Group {
-                
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.blue, lineWidth:2)
-                    .background(Color.white)
-                   
-                Text(emoji)
-                    .font(.largeTitle)
-                
-            }
-            .opacity(visibilityState ? 0 : 1)
+            let backgroundRect = RoundedRectangle(cornerRadius: 12)
             
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(.white, lineWidth:2)
-                .background(Color.blue)
+            ZStack {
+                backgroundRect.fill(colors[chosenTheme - 1])
+                Group {
+                    backgroundRect.fill(.white)
+                    backgroundRect.stroke(colors[chosenTheme - 1], lineWidth:2)
+                    Text(cardText).font(.largeTitle)
+                }
                 .opacity(visibilityState ? 1 : 0)
-           
-        }
+            }
         
         .onTapGesture {
             visibilityState.toggle()
         }
-        
+    
     }
-}
-#Preview {
-    CardView(emoji: "😀")
 }
