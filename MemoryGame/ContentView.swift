@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var  emojis = ["😀", "😃", "😁", "😆", "😅", "😂", "😀",
-                          "😃", "😁", "😆", "😅", "😂"]
+    @State var  emojis = ["😀", "😃", "😁", "😆", "😅", "😂", "😀", "😃", "😁", "😆", "😅", "😂"]
     @State var chosenTheme = 1
     @State var numberOfCards = 2
     
     var body: some View {
+         let cardsAddButton = adjustCardNumber(by: 2, symbol: "+")
+         let cardsSubtractButton = adjustCardNumber(by: -2, symbol: "-")
+        
         let cards = cardLayoutView()
         VStack {
             VStack {
@@ -22,11 +24,14 @@ struct ContentView: View {
                 cards
                 Spacer()
                 HStack {
-                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "1")
-                    Spacer()
-                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "2")
-                    Spacer()
-                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "3")
+                    cardsAddButton
+                     Spacer()
+                    cardsSubtractButton
+//                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "1")
+//                    Spacer()
+//                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "2")
+//                    Spacer()
+//                    ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "3")
                 }
            }.padding()
         }
@@ -52,19 +57,22 @@ struct ContentView: View {
 //        }
     }
     
-//    func adjustCardNumber(by offset: Int, symbol: String) -> some View {
-//        let count: Int = numberOfCards + offset
-//
-//        var state: Bool = false
-//        if count < 2 || count > emojis.count {
-//            state.toggle()
-//        }
-//
-//        return Button(symbol) {numberOfCards += offset}
-//            .disabled(state)
-//            .frame(width: 30, height: 20)
-//            .border(.blue)
-//    }
+    func adjustCardNumber(by offset: Int, symbol: String) -> some View {
+        let count: Int = numberOfCards + offset
+
+        var state: Bool = false
+        if count < 2 || count > emojis.count {
+            state.toggle()
+        }
+
+        return Button(symbol) {
+            numberOfCards += offset
+            
+        }
+            .disabled(state)
+            .frame(width: 20, height: 20)
+            .border(.blue)
+    }
     
     func cardLayoutView() -> some View {
             return (
@@ -82,12 +90,12 @@ struct ContentView: View {
     //            }
                 ScrollView {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 70), spacing: 3)], spacing: 3) {
-    //                    ForEach(0..<numberOfCards, id: \.self) { index in
-    //                        CardView(content: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
-    //                    }
-                        ForEach(0..<emojis.count, id: \.self) { index in
+                        ForEach(0..<numberOfCards, id: \.self) { index in
                             CardView(cardText: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
                         }
+//                        ForEach(0..<emojis.count, id: \.self) { index in
+//                            CardView(cardText: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
+//                        }
                     }
                 }
             )
