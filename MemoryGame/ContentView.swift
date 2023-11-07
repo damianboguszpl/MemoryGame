@@ -9,107 +9,122 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var  emojis = ["😀", "😃", "😁", "😆", "😅", "😂", "😀", "😃", "😁", "😆", "😅", "😂"]
-    @State var chosenTheme = 1
-    @State var numberOfCards = 2
+    @ObservedObject var viewModel : MemoGameViewModel = MemoGameViewModel()
     
     var body: some View {
-//         let cardsAddButton = adjustCardNumber(by: 2, symbol: "+")
-//         let cardsSubtractButton = adjustCardNumber(by: -2, symbol: "-")
-        
-        let cards = cardLayoutView()
-        let themeChooser = themeChoser()
         VStack {
-            VStack {
-                Text("Memo").font(.largeTitle)
-                cards
-                Spacer()
-                themeChooser
-                HStack {
-//                    cardsAddButton
-//                     Spacer()
-//                    cardsSubtractButton
-                }
-           }.padding()
+            
         }
-        .padding()
         
+    }
+}
+
+
+////Lab 4 and earlier ahead
+//
+//struct ContentView: View {
+//
+//    @State var  emojis = ["😀", "😃", "😁", "😆", "😅", "😂", "😀", "😃", "😁", "😆", "😅", "😂"]
+//    @State var chosenTheme = 1
+//    @State var numberOfCards = 2
+//
+//    var body: some View {
+////         let cardsAddButton = adjustCardNumber(by: 2, symbol: "+")
+////         let cardsSubtractButton = adjustCardNumber(by: -2, symbol: "-")
+//
+//        let cards = cardLayoutView()
+//        let themeChooser = themeChoser()
 //        VStack {
-//            HStack{
-//                Button( action: {
-//                    if numberOfCards >= 4 {
-//                        numberOfCards -= 2
-//                    }
-//                }, label: {
-//                    Text("-")
-//                })
-//                .frame(width: 20, height: 20)
-//                Button( action: {
-//                    numberOfCards += 2
-//                }, label: {
-//                    Text("+")
-//                })
-//                .frame(width: 20, height: 20)
-//            }
+//            VStack {
+//                Text("Memo").font(.largeTitle)
+//                cards
+//                Spacer()
+//                themeChooser
+//                HStack {
+////                    cardsAddButton
+////                     Spacer()
+////                    cardsSubtractButton
+//                }
+//           }.padding()
 //        }
-    }
-    
-    func themeChoser() -> some View {
-            HStack {
-                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "1")
-                Spacer()
-                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "2")
-                Spacer()
-                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "3")
-            }
-    }
-    
-//    func adjustCardNumber(by offset: Int, symbol: String) -> some View {
-//        let count: Int = numberOfCards + offset
+//        .padding()
 //
-//        var state: Bool = false
-//        if count < 2 || count > emojis.count {
-//            state.toggle()
-//        }
-//
-//        return Button(symbol) {
-//            numberOfCards += offset
-//            
-//        }
-//            .disabled(state)
-//            .frame(width: 20, height: 20)
-//            .border(.blue)
+////        VStack {
+////            HStack{
+////                Button( action: {
+////                    if numberOfCards >= 4 {
+////                        numberOfCards -= 2
+////                    }
+////                }, label: {
+////                    Text("-")
+////                })
+////                .frame(width: 20, height: 20)
+////                Button( action: {
+////                    numberOfCards += 2
+////                }, label: {
+////                    Text("+")
+////                })
+////                .frame(width: 20, height: 20)
+////            }
+////        }
 //    }
-    
-    func cardLayoutView() -> some View {
-            return (
-    //            ScrollView {
-    //                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 16)], spacing: 16) {
-    //                    ForEach(0 ..< numberOfCards, id:\.self) { index in
-    //                        if index < emojis.count {
-    //                            //Text(emojis[index])
-    //                            CardView(emoji: emojis[index])
-    //                                .background(Color.blue)
-    //                        }
-    //
-    //                    }
-    //                }
-    //            }
-                ScrollView {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 70), spacing: 3)], spacing: 3) {
-//                        ForEach(0..<numberOfCards, id: \.self) { index in
+//
+//    func themeChoser() -> some View {
+//            HStack {
+//                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "1")
+//                Spacer()
+//                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "2")
+//                Spacer()
+//                ThemeButtonView(chosenTheme: $chosenTheme, emojis: $emojis, buttonOptionText: "3")
+//            }
+//    }
+//
+////    func adjustCardNumber(by offset: Int, symbol: String) -> some View {
+////        let count: Int = numberOfCards + offset
+////
+////        var state: Bool = false
+////        if count < 2 || count > emojis.count {
+////            state.toggle()
+////        }
+////
+////        return Button(symbol) {
+////            numberOfCards += offset
+////
+////        }
+////            .disabled(state)
+////            .frame(width: 20, height: 20)
+////            .border(.blue)
+////    }
+//
+//    func cardLayoutView() -> some View {
+//            return (
+//    //            ScrollView {
+//    //                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 16)], spacing: 16) {
+//    //                    ForEach(0 ..< numberOfCards, id:\.self) { index in
+//    //                        if index < emojis.count {
+//    //                            //Text(emojis[index])
+//    //                            CardView(emoji: emojis[index])
+//    //                                .background(Color.blue)
+//    //                        }
+//    //
+//    //                    }
+//    //                }
+//    //            }
+//                ScrollView {
+//                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 70), spacing: 3)], spacing: 3) {
+////                        ForEach(0..<numberOfCards, id: \.self) { index in
+////                            CardView(cardText: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
+////                        }
+//                        ForEach(0..<emojis.count, id: \.self) { index in
 //                            CardView(cardText: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
 //                        }
-                        ForEach(0..<emojis.count, id: \.self) { index in
-                            CardView(cardText: emojis[index], chosenTheme: $chosenTheme).aspectRatio(2/3, contentMode: .fit)
-                        }
-                    }
-                }
-            )
-        }
-    
-    
-}
+//                    }
+//                }
+//            )
+//        }
+//
+//
+//}
 
 
 //#Preview {

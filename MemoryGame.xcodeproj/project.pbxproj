@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D731A892AF00A5400C0A916 /* ThemeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */; };
+		2DE418B22AFA1F9900BA4A92 /* MemoGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE418B12AFA1F9900BA4A92 /* MemoGameModel.swift */; };
+		2DE418B42AFA253700BA4A92 /* MemoGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE418B32AFA253700BA4A92 /* MemoGameViewModel.swift */; };
 		3FA255882ADE6CD000C6A5CA /* MemoryGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */; };
 		3FA2558A2ADE6CD000C6A5CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA255892ADE6CD000C6A5CA /* ContentView.swift */; };
 		3FA2558C2ADE6CD100C6A5CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FA2558B2ADE6CD100C6A5CA /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButtonView.swift; sourceTree = "<group>"; };
+		2DE418B12AFA1F9900BA4A92 /* MemoGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameModel.swift; sourceTree = "<group>"; };
+		2DE418B32AFA253700BA4A92 /* MemoGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoGameViewModel.swift; sourceTree = "<group>"; };
 		3FA255842ADE6CD000C6A5CA /* MemoryGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGameApp.swift; sourceTree = "<group>"; };
 		3FA255892ADE6CD000C6A5CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			children = (
 				3FA255872ADE6CD000C6A5CA /* MemoryGameApp.swift */,
 				3FA255892ADE6CD000C6A5CA /* ContentView.swift */,
+				2DE418B12AFA1F9900BA4A92 /* MemoGameModel.swift */,
+				2DE418B32AFA253700BA4A92 /* MemoGameViewModel.swift */,
 				3FA255B12ADE6CED00C6A5CA /* CardView.swift */,
 				2D731A882AF00A5400C0A916 /* ThemeButtonView.swift */,
 				3FA2558B2ADE6CD100C6A5CA /* Assets.xcassets */,
@@ -263,7 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE418B22AFA1F9900BA4A92 /* MemoGameModel.swift in Sources */,
 				3FA2558A2ADE6CD000C6A5CA /* ContentView.swift in Sources */,
+				2DE418B42AFA253700BA4A92 /* MemoGameViewModel.swift in Sources */,
 				3FA255B22ADE6CED00C6A5CA /* CardView.swift in Sources */,
 				2D731A892AF00A5400C0A916 /* ThemeButtonView.swift in Sources */,
 				3FA255882ADE6CD000C6A5CA /* MemoryGameApp.swift in Sources */,
