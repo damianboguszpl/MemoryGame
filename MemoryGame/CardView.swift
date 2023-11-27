@@ -14,19 +14,35 @@ struct CardView: View {
     }
     
     var body: some View {
-            ZStack {
-                let backgroundRect = RoundedRectangle(cornerRadius: 12)
-                Group {
-                    backgroundRect.fill(.white)
-                    backgroundRect.strokeBorder(lineWidth: 3)
-                    Text(card.content)
-                        .font(.system(size: 200))
-                        .minimumScaleFactor(0.01)
-                        .aspectRatio(1, contentMode: .fit)
-                }
-                .opacity(card.isFaceUp ? 1 : 0)
-                backgroundRect.fill().opacity(card.isFaceUp ? 0 : 1)
-            }
+        ZStack{
+            let backgroundRect = RoundedRectangle(cornerRadius: 12)
+            Group{
+                backgroundRect.fill(.white)
+                
+                backgroundRect.strokeBorder(lineWidth: 3)
+                
+                Text(card.content)
+                    .font(.system(size: 200))
+                    .minimumScaleFactor(0.01)
+                    .aspectRatio(1 ,contentMode: .fit)
+            }.opacity(card.isFaceUp ? 1 : 0)
+            
+            backgroundRect.fill().opacity(card.isFaceUp ? 0 : 1)
+        }.aspectRatio(2/3, contentMode: .fill).opacity(card.isFaceUp || !card.isMatched ? 1 : 0)
+        
+//            ZStack {
+//                let backgroundRect = RoundedRectangle(cornerRadius: 12)
+//                Group {
+//                    backgroundRect.fill(.white)
+//                    backgroundRect.strokeBorder(lineWidth: 3)
+//                    Text(card.content)
+//                        .font(.system(size: 200))
+//                        .minimumScaleFactor(0.01)
+//                        .aspectRatio(1, contentMode: .fit)
+//                }
+//                .opacity(card.isFaceUp ? 1 : 0)
+//                backgroundRect.fill().opacity(card.isFaceUp ? 0 : 1)
+//            }
     
     }
 }

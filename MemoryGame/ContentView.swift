@@ -14,11 +14,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
-                cards
+                cards.animation(.default, value: viewModel.cards)
             }
             Button("Shuffle") {
                 viewModel.shuffle()
-            }
+            }.padding()
+            themeButtonsDisplay
         }.padding()
     }
     
@@ -32,12 +33,20 @@ struct ContentView: View {
                         viewModel.choose(card: card)
                     }
             }
-        }.foregroundColor(.orange)
+        }.foregroundColor(viewModel.themeColor)
     }
 
-    
-    
-    
+    var themeButtonsDisplay: some View{
+        return HStack{
+        Spacer()
+        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw1", ownColor: Color.blue)
+        Spacer()
+        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw2", ownColor: Color.red)
+        Spacer()
+        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw3", ownColor: Color.green)
+        Spacer()
+        }
+    }
     
 }
 
