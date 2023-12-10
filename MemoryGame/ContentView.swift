@@ -9,46 +9,116 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel : MemoGameViewModel = MemoGameViewModel()
+    @ObservedObject var viewModel: MemoGameViewModel = MemoGameViewModel()
+    @State private var lastScoreChange: (points: Int, cardId: String) = (0, "0")
     
     var body: some View {
-        VStack {
-            ScrollView {
+        VStack{
+            Text("Memory game").font(.title2)
+            ScrollView{
                 cards.animation(.default, value: viewModel.cards)
             }
-            Button("Shuffle") {
-                viewModel.shuffle()
-            }.padding()
+            HStack{
+                Text("Wynik: \(viewModel.score)")
+                Button("Wymieszaj"){
+                    viewModel.shuffle()
+                }
+            }.padding(.bottom, 15)
             themeButtonsDisplay
         }.padding()
+
     }
     
     var cards : some View {
-        LazyVGrid(columns : [GridItem(.adaptive(minimum: 85), spacing:0)], spacing:0) {
-            ForEach(viewModel.cards) { card in
-                CardView(card)
-                    .aspectRatio(2/3, contentMode: .fit)
-                    .padding(4)
-                    .onTapGesture {
-                        viewModel.choose(card: card)
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 85),spacing: 0)], spacing: 0){
+            ForEach(viewModel.cards){card in
+                ZStack{
+                    CardView(card)
+                        .aspectRatio(2/3, contentMode: .fit)
+                        .padding(4)
+                        .onTapGesture {
+                            let previousScore = viewModel.score
+                            viewModel.choose(card)
+                            let scoreChange = viewModel.score - previousScore
+                            lastScoreChange = (scoreChange, card.id)
+                        }
+                        .transformIntoCard(isFaceUp: card.isFaceUp)
+                    
+                    //                    .animation(.default,value: card.isFaceUp)
+                    if card.id == lastScoreChange.cardId && lastScoreChange.points != 0 {
+                        FlyingNumber(number: lastScoreChange.points)
+                            .onAppear{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+                                    lastScoreChange = (0, "0")
+                                }
+                            }
                     }
+                }
             }
         }.foregroundColor(viewModel.themeColor)
     }
 
-    var themeButtonsDisplay: some View{
-        return HStack{
-        Spacer()
-        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw1", ownColor: Color.blue)
-        Spacer()
-        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw2", ownColor: Color.red)
-        Spacer()
-        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw3", ownColor: Color.green)
-        Spacer()
-        }
+    func scoreChange(for cardId: String) -> Int {
+        return cardId == lastScoreChange.cardId ? lastScoreChange.points : 0
     }
     
+    var themeButtonsDisplay: some View{
+        return HStack{
+            Spacer()
+            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 1", ownColor: Color.orange)
+            Spacer()
+            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 2", ownColor: Color.red)
+            Spacer()
+            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 3", ownColor: Color.blue)
+            Spacer()
+        }
+    }
 }
+
+// bofore lab 7
+//struct ContentView: View {
+//
+//    @ObservedObject var viewModel : MemoGameViewModel = MemoGameViewModel()
+//
+//    var body: some View {
+//        //CirclePart().fill(Color.blue)
+//        VStack {
+//            ScrollView {
+//                cards.animation(.default, value: viewModel.cards)
+//            }
+//            Button("Shuffle") {
+//                viewModel.shuffle()
+//            }.padding()
+//            themeButtonsDisplay
+//        }.padding()
+//    }
+//
+//    var cards : some View {
+//        LazyVGrid(columns : [GridItem(.adaptive(minimum: 85), spacing:0)], spacing:0) {
+//            ForEach(viewModel.cards) { card in
+//                CardView(card)
+//                    .aspectRatio(2/3, contentMode: .fit)
+//                    .padding(4)
+//                    .onTapGesture {
+//                        viewModel.choose(card: card)
+//                    }
+//            }
+//        }.foregroundColor(viewModel.themeColor)
+//    }
+//
+//    var themeButtonsDisplay: some View{
+//        return HStack{
+//        Spacer()
+//        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw1", ownColor: Color.blue)
+//        Spacer()
+//        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw2", ownColor: Color.red)
+//        Spacer()
+//        ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw3", ownColor: Color.green)
+//        Spacer()
+//        }
+//    }
+//
+//}
 
 
 ////Lab 4 and earlier ahead

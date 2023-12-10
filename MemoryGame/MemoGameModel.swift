@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MemoGameModel<CardContent> where CardContent:Equatable{
+    var score = 0
+    
 //    zmienną prywatną, dla ustawienia wartości, przechowującą tablicę kart;
     private (set) var cards : Array<Card>
     
@@ -16,12 +18,13 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
 //    init(numberOfPairsOfCards: Int, cardContentFactory: (Int)->
 //    CardContent)
 //    Należy zastosować pętlę for z uwzględnieniem, że minimalna liczba par to dwie;
+    
     init(numberOfPairsOfCards: Int, cardContentFactory : (Int)->CardContent) {
         cards = []
         for pairIndex in 0..<max(2,numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(id: "\(pairIndex+1)a", content: content))
-            cards.append(Card(id: "\(pairIndex+1)b", content: content))
+            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
+            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
         }
         cards.shuffle()
     }
@@ -30,8 +33,8 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
         cards = []
         for pairIndex in 0..<max(2,numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(id: "\(pairIndex+1)a", content: content))
-            cards.append(Card(id: "\(pairIndex+1)b", content: content))
+            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
+            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
         }
         cards.shuffle()
     }
@@ -48,6 +51,14 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
                 if cards[chosenIndex].content == cards[potentialMatchIndex].content {
                     cards[chosenIndex].isMatched = true
                     cards[potentialMatchIndex].isMatched = true
+                    score += 4
+                } else {
+                    if cards[chosenIndex].hasBeenSeen {
+                        score -= 1
+                    }
+                    if cards[potentialMatchIndex].hasBeenSeen {
+                        score -= 1
+                    }
                 }
             } else {
                 indexOfTheOneAndOnlyFaceUpCard = chosenIndex
@@ -82,12 +93,18 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
 //    o informacji, czy karta jest odwrócona, z domyślną wartością false;
 //    o informacji, czy karta pasuje do drugiej, z domyślną wartością false.
 //    o zawartości karty;
-    struct Card : Equatable, Identifiable, CustomDebugStringConvertible{
-        var id: String
-        
-        var isFaceUp = false
+    struct Card : Equatable, Identifiable{
+        var isFaceUp = false {
+                    didSet {
+                        if oldValue && !isFaceUp{
+                            hasBeenSeen = true
+                        }
+                    }
+                }
+        var hasBeenSeen = false
         var isMatched = false
         var content : CardContent
+        var id: String
         
         var debugDescription: String {
             return "\(id): \(content) \(isFaceUp ? "up" : "down") \(isMatched ? "matched" : "")"

@@ -31,9 +31,16 @@ class MemoGameViewModel : ObservableObject{
     
     @Published private var model = createMemoGameModel()
     
-    var cards: Array<MemoGameModel<String>.Card> {
-        return model.cards
-    }
+    var score: Int {
+            model.score
+        }
+    
+    var cards: [MemoGameModel<String>.Card] {
+            model.cards
+        }
+//    var cards: Array<MemoGameModel<String>.Card> {
+//        return model.cards
+//    }
     
     func shuffle() {
         model.shuffle()
@@ -43,13 +50,14 @@ class MemoGameViewModel : ObservableObject{
 //        model.choose(card: card)
 //    }
     
-    func choose(card: MemoGameModel<String>.Card) {
+    func choose(_ card: MemoGameModel<String>.Card) {
         model.choose(card)
     }
     
     func changeTheme(color: Color) {
         themeColor = color
         MemoGameViewModel.theme = color
+        model.score = 0
         
         model.changeCardSet(numberOfPairsOfCards: 8) {
             index in
