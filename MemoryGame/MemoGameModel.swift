@@ -23,8 +23,9 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
         cards = []
         for pairIndex in 0..<max(2,numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
-            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
+            let uuid = UUID()
+            cards.append(Card(content: content, id: "\(uuid)a"))
+            cards.append(Card(content: content, id: "\(uuid)b"))
         }
         cards.shuffle()
     }
@@ -33,8 +34,9 @@ struct MemoGameModel<CardContent> where CardContent:Equatable{
         cards = []
         for pairIndex in 0..<max(2,numberOfPairsOfCards) {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(content: content, id: "\(pairIndex+1)a"))
-            cards.append(Card(content: content, id: "\(pairIndex+1)b"))
+            let uuid = UUID()
+            cards.append(Card(content: content, id: "\(uuid)a"))
+            cards.append(Card(content: content, id: "\(uuid)b"))
         }
         cards.shuffle()
     }

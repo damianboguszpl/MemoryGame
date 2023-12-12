@@ -65,11 +65,11 @@ struct ContentView: View {
     var themeButtonsDisplay: some View{
         return HStack{
             Spacer()
-            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 1", ownColor: Color.orange)
+            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 1", ownColor: Color.blue)
             Spacer()
             ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 2", ownColor: Color.red)
             Spacer()
-            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 3", ownColor: Color.blue)
+            ThemeButtonView(viewModel: viewModel, imageName: "pencil", content: "Motyw 3", ownColor: Color.green)
             Spacer()
         }
     }
